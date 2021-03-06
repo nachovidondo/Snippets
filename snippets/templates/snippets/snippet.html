@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %} {% load pygmentify_tags %}
+<div class="row justify-content-md-center">
+    <div class="col-md-8">
+        <br>
+        <div class="card">
+            <h5 class="card-header">{{snippet.name}}<a href="#" class="float-right"><small>{{snippet.user}}</small></a></h5>
+            <div class="card-body">
+                <a href="{% url 'language' %}">
+                    <h5 class="card-title">{{snippet.language}}</h5>
+                </a>
+                <h6 class="card-subtitle mb-2 text-muted">{{snippet.create_date}}</h6>
+                <p class="card-text">{{snippet.description}}</p>
+                <div style="background-color:lightgray;border-radius: 5px;">
+                    <!-- Código del Snippet -->
+
+
+                    <link rel="stylesheet" href="{% pygmentify_css 'monokai' %}"> {% pygmentify style='monokai' cssclass='bettercssclass' linenos='true' linenostart=0 %}
+
+
+
+                    <pre class="Python">
+                   {{snippet.snippet}}
+                
+                    </pre>{% endpygmentify %}
+                    <!-- Código del Snippet -->
+                </div>
+                <hr>
+                <br> {% if user == snippet.user %}
+                <a href=" {% url 'snippet_edit' snippet.id %} " class=" btn btn-info ">Editar</a>
+                <a href="{% url 'snippet_delete' snippet.id %} " class="btn btn-danger ">Eliminar</a> {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

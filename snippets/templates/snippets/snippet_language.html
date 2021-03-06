@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block content %}
+<div class="row justify-content-md-center">
+
+    <h3>Listado de Snippets por Lenguaje </h3>
+
+    <div class="col-md-8">
+        {% for snippet in object_list %}
+        <br>
+
+
+        <div class="card">
+            <h5 class="card-header">{{snippet.name}}<a href="#" class="float-right"><small>{{snippet.user}}</small></a></h5>
+            <div class="card-body">
+
+                <a href="{% url 'language' %}">
+                    <h5 class="card-title">{{snippet.language}}</h5>
+                </a>
+                <h6 class="card-subtitle mb-2 text-muted">{{snippet.create_date}}</h6>
+                <p class="card-text">{{snippet.description}}</p>
+                <div style="background-color:lightgray;border-radius: 5px;">
+                    <!-- Código del Snippet -->
+                    <samp>{{snippet.snippet}}</samp>
+                    <!-- Código del Snippet -->
+                </div>
+                <hr>
+                <br>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div> {% endblock %}

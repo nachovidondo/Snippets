@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+
+<form method="POST" autocomplete=off class="mt-2" action="">
+    {% csrf_token %} {{form|crispy }}
+
+    <button type="submit" class="btn btn-success">Confirmar Edicion</button>
+</form>
+
+{% endblock %}
